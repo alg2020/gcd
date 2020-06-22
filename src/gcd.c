@@ -2,7 +2,6 @@
 
 const int n = 1000;
 
-
 unsigned int Euclidean_gcd_rec(unsigned int x, unsigned int y){
 }
 
@@ -18,7 +17,7 @@ unsigned int binary_gcd_itr(unsigned int x, unsigned int y){
 */
 
 
-int main(){
+int main(void){
   unsigned int i, j, c;
 
 
