@@ -3,10 +3,19 @@
 const int n = 1000;
 
 unsigned int Euclidean_gcd_rec(unsigned int x, unsigned int y){
+  if(y == 0) return x;
+  return Euclidean_gcd_rec(y, x % y);
 }
 
 /*
 unsigned int Euclidean_gcd_itr(unsigned int x, unsigned int y){
+  while(x != 0){
+    unsigned int z = x;
+    x = x % y;
+    y = z;
+  }
+
+  return y;
 }
 
 unsigned int binary_gcd_rec(unsigned int x, unsigned int y){
