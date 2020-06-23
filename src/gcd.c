@@ -29,17 +29,17 @@ unsigned int binary_gcd_rec(unsigned int x, unsigned int y){
 
 unsigned int binary_gcd_itr(unsigned int x, unsigned int y){
     if(x * y == 0)return x + y;
-    unsigned int l_shift = 0;
-    while(~(x|y) & 1)l_shift ++, x >>= 1, y >>= 1;
+    unsigned int shift = __builtin_ctz(x|y);
+    x >>= shift, y >>= shift;
     unsigned int diff, mi;
     while(x*y){
         diff = x > y ? x - y : y - x;
         mi = x > y ? y : x;
         x = diff, y = mi;
-        if(~x&1)x >>= 1;
-        if(~y&1)y >>= 1;
+        while(~x&1 && x)x >>= 1;
+        while(~y&1 && y)y >>= 1;
     }
-    return (x+y)<<l_shift;
+    return (x+y)<<shift;
 }
 
 
