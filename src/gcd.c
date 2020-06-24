@@ -28,9 +28,9 @@ return binary_gcd_rec((x-y)/2,y);
 }
 
 unsigned int binary_gcd_itr(unsigned int x, unsigned int y){
-while(x*y!=0){
 unsigned int z;
 unsigned int w=1;
+while(x*y!=0){
 if(x%2==0&&y%2==0){
 x=x/2;
 y=y/2;
@@ -47,8 +47,8 @@ z=x;
 x=z-y;
 }
 }
-if(x==0) return y;
-return x;
+if(x==0) return y*w;
+return x*w;
 }
 
 
