@@ -28,22 +28,16 @@ unsigned int binary_gcd_rec(unsigned int x, unsigned int y){
 
 unsigned int binary_gcd_itr(unsigned int x, unsigned int y){
   unsigned int z = 1;
+  unsigned int k = 0, l = 0;
   while(x!=0 && y!=0){
-    if (x&1){
-      if (y&1){
-        if (y>=x) y = (y-x)>>1;
-        else x = (x-y)>>1;
-      }else{
-        y = y>>1;
-      }
-    }else{
-      if (y&1) x = x>>1;
-      else{
-        z = z<<1;
-        x = x>>1;
-        y = y>>1;
-      }
-    }
+    k = __builtin_ctzll(x);
+    l = __builtin_ctzll(y);
+    if (k<l) z = z<<k;
+    else z = z<<l;
+    x = x>>k;
+    y = y>>l;
+    if (y>=x) y = (y-x)>>1;
+    else x = (x-y)>>1;
   }
   if (x==0) return z*y;
   return z*x;
